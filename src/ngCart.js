@@ -207,6 +207,11 @@ angular.module('ngCart', ['ngCart.directives'])
             this.setPrice(price);
             this.setQuantity(quantity);
             this.setData(data);
+            $rootScope.$watch(
+                function () { return this._quantity; }.bind(this),
+                function () { return $rootScope.$broadcast('ngCart:change', {}); },
+                true
+            );
         };
 
 
@@ -297,16 +302,6 @@ angular.module('ngCart', ['ngCart.directives'])
                 total: this.getTotal()
             }
         };
-
-        $rootScope.$watch(
-            function () {
-                return item;
-            },
-            function () {
-                return $rootScope.$broadcast('ngCart:change', {});
-            },
-            true
-        );
 
         return item;
 
