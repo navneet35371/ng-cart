@@ -298,6 +298,16 @@ angular.module('ngCart', ['ngCart.directives'])
             }
         };
 
+        $rootScope.$watch(
+            function () {
+                return item;
+            },
+            function () {
+                return $rootScope.$broadcast('ngCart:change', {});
+            },
+            true
+        );
+
         return item;
 
     }])
