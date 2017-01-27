@@ -304,7 +304,8 @@ angular.module('ngCart', ['ngCart.directives'])
             },
             function () {
                 return $rootScope.$broadcast('ngCart:change', {});
-            }
+            },
+            true
         );
 
         return item;
