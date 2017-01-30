@@ -138,8 +138,8 @@ angular.module('ngCart', ['ngCart.directives'])
         this.removeItemById = function (id) {
             var item;
             var cart = this.getCart();
-            angular.forEach(cart.items, function (item, index) {
-                if(item.getId() === id) {
+            angular.forEach(cart.items, function (it, index) {
+                if(it.getId() === id) {
                     item = cart.items.splice(index, 1)[0] || {};
                 }
             });
@@ -149,16 +149,16 @@ angular.module('ngCart', ['ngCart.directives'])
         };
 
         this.empty = function () {
-            
+
             $rootScope.$broadcast('ngCart:change', {});
             this.$cart.items = [];
             $window.localStorage.removeItem('cart');
         };
-        
+
         this.isEmpty = function () {
-            
+
             return (this.$cart.items.length > 0 ? false : true);
-            
+
         };
 
         this.toObject = function() {
